@@ -1,0 +1,60 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "foresttrace"
+version = "0.0.1"
+description = "Machine learning for forest boundary detectionj"
+authors = [
+  { name = "Bennett Zug" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+dependencies = [
+    "argparse>=1.4.0",
+    "gdal>=3.11.0",
+    "gdal2tiles>=0.1.6",
+    "geopandas>=1.1.0",
+    "geotile>=1.1.0",
+    "loguru",
+    "matplotlib>=3.10.3",
+    "mercantile>=1.2.1",
+    "mkdocs",
+    "numpy>=2.2.6",
+    "osmnx>=2.0.4",
+    "pathlib>=1.0.1",
+    "pillow>=11.2.1",
+    "pip",
+    "python-dotenv",
+    "rasterio>=1.4.3",
+    "requests>=2.32.4",
+    "ruff",
+    "shapely>=2.1.1",
+    "tqdm",
+    "typer",
+]
+requires-python = "~=3.10.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["foresttrace"]
+include = ["pyproject.toml", "foresttrace/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["foresttrace"]
+force-sort-within-sections = true
+
+[dependency-groups]
+dev = [
+    "ipykernel>=6.29.5",
+]
+
