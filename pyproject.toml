@@ -5,7 +5,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "foresttrace"
 version = "0.0.1"
-description = "Machine learning for forest boundary detectionj"
+description = "Machine learning for forest boundary detection"
 authors = [
   { name = "Bennett Zug" },
 ]
@@ -21,6 +21,7 @@ dependencies = [
     "gdal2tiles>=0.1.6",
     "geopandas>=1.1.0",
     "geotile>=1.1.0",
+    "ipywidgets>=8.1.7",
     "loguru",
     "matplotlib>=3.10.3",
     "mercantile>=1.2.1",
