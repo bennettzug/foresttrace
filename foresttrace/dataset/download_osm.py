@@ -6,7 +6,7 @@ from pathlib import Path
 import osmnx as ox
 
 
-def main(bbox: tuple[float, float, float, float], tag_key: str, tag_value: str, output_path: Path) -> None:
+def download_osm(bbox: tuple[float, float, float, float], tag_key: str, tag_value: str, output_path: Path) -> None:
     tags = {tag_key: tag_value}
 
     gdf = ox.features.features_from_bbox(bbox, tags=tags)
@@ -17,7 +17,7 @@ def main(bbox: tuple[float, float, float, float], tag_key: str, tag_value: str, 
     gdf.to_file(out_path, driver="GeoJSON")
 
 
-if __name__ == "__main__":
+def main(bbox: tuple[float, float, float, float], tag_key: str, tag_value: str, output_path: Path) -> None:
     parser = argparse.ArgumentParser(description="Download OpenStreetMap data within a bounding box.")
     parser.add_argument(
         "--bbox",
@@ -42,4 +42,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     key, value = args.tag.split("=")
-    main(tuple(args.bbox), key, value, args.out)
+    download_osm(tuple(args.bbox), key, value, args.out)
+
+
+if __name__ == "__main__":
+    main()

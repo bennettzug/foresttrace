@@ -26,7 +26,7 @@ def download_tile(tile: mercantile.Tile, out_dir: Path) -> tuple[bool, mercantil
     return False, tile
 
 
-def main(bbox: tuple[float, float, float, float], zoom: int, out_path: str, max_workers: int = 16) -> None:
+def download_naip(bbox: tuple[float, float, float, float], zoom: int, out_path: str, max_workers: int = 16) -> None:
     west, south, east, north = bbox
     tiles = list(mercantile.tiles(west, south, east, north, zoom))
 
@@ -53,7 +53,7 @@ def main(bbox: tuple[float, float, float, float], zoom: int, out_path: str, max_
         print(f"⚠ Failed tiles logged to {fail_log}")
 
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Download NAIP imagery")
     parser.add_argument(
         "--bbox",
@@ -83,4 +83,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    main(tuple(args.bbox), args.zoom, args.out)
+    download_naip(tuple(args.bbox), args.zoom, args.out, max_workers=args.max_workers)
+
+
+if __name__ == "__main__":
+    main()

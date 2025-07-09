@@ -97,7 +97,7 @@ def rasterize_tile(
         dst.write(mask, 1)
 
 
-def main(tile_dir: Path, polygon_path: Path, output_dir: Path) -> None:
+def polygons_to_mask_tiles(tile_dir: Path, polygon_path: Path, output_dir: Path) -> None:
     """Main function to process all tiles"""
 
     print("Loading polygons...")
@@ -144,7 +144,7 @@ def main(tile_dir: Path, polygon_path: Path, output_dir: Path) -> None:
         print(f"⚠ Failed to process {failed} tiles")
 
 
-if __name__ == "__main__":
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Rasterize forest polygons to mask tiles aligned with NAIP imagery.",
     )
@@ -168,4 +168,8 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    main(Path(args.tiles), Path(args.polygons), Path(args.out))
+    polygons_to_mask_tiles(Path(args.tiles), Path(args.polygons), Path(args.out))
+
+
+if __name__ == "__main__":
+    main()
